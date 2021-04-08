@@ -18,6 +18,11 @@ public class Handpresence : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        tryinitialize();
+    }
+
+    private void tryinitialize()
+    {
         List<InputDevice> devices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(controllercharacteristics, devices);
 
@@ -69,16 +74,23 @@ public class Handpresence : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (showcontroller)
+        if (!targetdevice.isValid)
         {
-            spawnedhandmodel.SetActive(false);
-            spawnedcontroller.SetActive(true);
+            tryinitialize();
         }
         else
         {
-            spawnedhandmodel.SetActive(true);
-            spawnedcontroller.SetActive(false);
-            UpdateHandAnimator();
+            if (showcontroller)
+            {
+                spawnedhandmodel.SetActive(false);
+                spawnedcontroller.SetActive(true);
+            }
+            else
+            {
+                spawnedhandmodel.SetActive(true);
+                spawnedcontroller.SetActive(false);
+                UpdateHandAnimator();
+            }
         }
     }
 }
