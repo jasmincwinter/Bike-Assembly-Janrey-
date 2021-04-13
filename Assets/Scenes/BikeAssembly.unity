@@ -1065,11 +1065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3e02f5c9e5f144a9cd4c7e03a69ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Grabbables:
-  - {fileID: 88364392}
-  - {fileID: 2144512672}
-  currentState: 0
-  XRGrabInteractableScript: {fileID: 0}
 --- !u!1 &107735195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,10 +1250,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2134248307}
+        m_TargetAssemblyTypeName: ListTrigger, Assembly-CSharp
+        m_MethodName: DisableSocket
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 131337840}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2134248307}
+        m_TargetAssemblyTypeName: ListTrigger, Assembly-CSharp
+        m_MethodName: DisableXRGrab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -2771,6 +2790,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socket: {fileID: 810971064}
+  Script_xRGrabInteractable: {fileID: 0}
+  Script_xRSocketInteractor: {fileID: 0}
+  socketCollider: {fileID: 0}
 --- !u!114 &493382097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3242,10 +3264,34 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2134248233}
+        m_TargetAssemblyTypeName: ListTrigger, Assembly-CSharp
+        m_MethodName: DisableSocket
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 547371333}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2134248233}
+        m_TargetAssemblyTypeName: ListTrigger, Assembly-CSharp
+        m_MethodName: DisableXRGrab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -13971,6 +14017,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socket: {fileID: 547371330}
+  Script_xRGrabInteractable: {fileID: 0}
+  Script_xRSocketInteractor: {fileID: 0}
+  socketCollider: {fileID: 0}
 --- !u!54 &2134248234
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14382,6 +14431,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socket: {fileID: 131337837}
+  Script_xRGrabInteractable: {fileID: 0}
+  Script_xRSocketInteractor: {fileID: 0}
+  socketCollider: {fileID: 0}
 --- !u!114 &2134248308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14395,6 +14447,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socket: {fileID: 1229887989}
+  Script_xRGrabInteractable: {fileID: 0}
+  Script_xRSocketInteractor: {fileID: 0}
+  socketCollider: {fileID: 0}
 --- !u!114 &2134248331
 MonoBehaviour:
   m_ObjectHideFlags: 0

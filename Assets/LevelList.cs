@@ -12,11 +12,9 @@ public class LevelList : MonoBehaviour
 
     void Update()
     {
-
         for (int i = 0; i < Grababbles.Count; i++)
         {
             Grababbles[CurrentState].GetComponent<XRGrabInteractable>().enabled = true;
-
         }
     }
 }
