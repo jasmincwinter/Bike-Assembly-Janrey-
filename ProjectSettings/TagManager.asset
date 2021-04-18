@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - socket
+  - hand
   layers:
   - Default
   - TransparentFX

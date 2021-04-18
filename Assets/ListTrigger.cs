@@ -11,7 +11,10 @@ public class ListTrigger : MonoBehaviour
     public XRGrabInteractable Script_xRGrabInteractable;
     public XRSocketInteractor Script_xRSocketInteractor;
 
-    public Collider socketCollider; 
+    public Collider socketCollider;
+    public GameObject ghostMesh;
+
+    //public GameObject asset; 
 
 
 
@@ -21,44 +24,56 @@ public class ListTrigger : MonoBehaviour
         Script_xRGrabInteractable = GetComponent<XRGrabInteractable>();
         //Script_xRSocketInteractor = GetComponent<XRSocketInteractor>();
 
-        socketCollider = GetComponent<Collider>(); 
-    }
+        socketCollider = GetComponent<Collider>();
 
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == socket)
-        {
-            //testScript.CurrentState++;
-
-            //if(Script_xRSocketInteractor.finalPosition)
-            //{
-
-            //}
-
-            //other.gameObject.GetComponent<Collider>().isTrigger = false;
-
-            // Disable collider from socket.  
-
-            //socketCollider.enabled = false;
-
-
-            //Script_xRSocketInteractor.enabled = false; 
-
-            //Script_xRGrabInteractable.enabled = false;
-        }
+        ghostMesh.GetComponent<MeshRenderer>().enabled= false;
     }
 
     public void DisableSocket(Collider other)
     {
         testScript.CurrentState++;
+        // Enable mesh renderer on ghost piece.
+
+
         other.gameObject.GetComponent<Collider>().enabled = false;
 
     }
 
     public void DisableXRGrab()
     {
-        Script_xRGrabInteractable.enabled = false;
+            Script_xRGrabInteractable.enabled = false;
+        //ghostMesh.GetComponent<MeshRenderer>().enabled = false;
     }
+
+    public void MeshGhost(SelectEnterEventArgs MeshEnableArgs)
+    {
+        if (MeshEnableArgs.interactor.tag == "hand" )
+        {
+            ghostMesh.GetComponent<MeshRenderer>().enabled = true;
+        }
+
+
+
+    }
+
+    public void MeshGhostDisable(SelectExitEventArgs MeshDisableArgs)
+    {
+        if (MeshDisableArgs.interactor.tag == "hand")
+        {
+            ghostMesh.GetComponent<MeshRenderer>().enabled = false;
+
+        }
+
+
+        //Script_xRGrabInteractable.enabled = false;
+    }
+
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject == socketCollider)
+    //    {
+    //        ghostMesh.GetComponent<MeshRenderer>().enabled = false;
+    //    }
+    //}
 }
 
