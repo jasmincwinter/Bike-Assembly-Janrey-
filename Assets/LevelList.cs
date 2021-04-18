@@ -15,6 +15,12 @@ public class LevelList : MonoBehaviour
         for (int i = 0; i < Grababbles.Count; i++)
         {
             Grababbles[CurrentState].GetComponent<XRGrabInteractable>().enabled = true;
+
+            if (CurrentState == 3)
+            {
+                //StartCoroutine(coroutineD());
+                break;
+            }
         }
     }
 }

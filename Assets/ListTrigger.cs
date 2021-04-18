@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
 
 public class ListTrigger : MonoBehaviour
 {
@@ -11,29 +12,51 @@ public class ListTrigger : MonoBehaviour
     public XRGrabInteractable Script_xRGrabInteractable;
     public XRSocketInteractor Script_xRSocketInteractor;
 
-    public Collider socketCollider;
     public GameObject ghostMesh;
 
-    //public GameObject asset; 
+    public GameObject boardCollider;
 
-
+    public Text TextBoard;
+    public GameObject InfoObject;
+    public string textin;
 
     void Start()
     {
         testScript = FindObjectOfType<LevelList>();
         Script_xRGrabInteractable = GetComponent<XRGrabInteractable>();
-        //Script_xRSocketInteractor = GetComponent<XRSocketInteractor>();
-
-        socketCollider = GetComponent<Collider>();
 
         ghostMesh.GetComponent<MeshRenderer>().enabled= false;
+
+        InfoObject.SetActive(false);
+
+        TextBoard.GetComponent<Text>();
+        InfoObject.GetComponent<Text>();
     }
 
     public void DisableSocket(Collider other)
     {
         testScript.CurrentState++;
-        // Enable mesh renderer on ghost piece.
+    }
 
+    IEnumerator coroutineD()
+    {
+        yield return new WaitForSeconds(1);
+        Script_xRGrabInteractable.enabled = false;
+        socket.gameObject.GetComponent<Collider>().enabled = false;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == socket)
+        {
+            StartCoroutine(coroutineD());
+        }
+
+    }
+
+    public void DisableWallSocket(Collider other)
+    {
+        testScript.CurrentState--;
 
         other.gameObject.GetComponent<Collider>().enabled = false;
 
@@ -41,8 +64,12 @@ public class ListTrigger : MonoBehaviour
 
     public void DisableXRGrab()
     {
-            Script_xRGrabInteractable.enabled = false;
-        //ghostMesh.GetComponent<MeshRenderer>().enabled = false;
+         Script_xRGrabInteractable.enabled = false;
+
+        // infor object UI text = false
+        InfoObject.SetActive(false);
+        // change color of the name of the asset to gray
+        TextBoard.color = Color.gray;
     }
 
     public void MeshGhost(SelectEnterEventArgs MeshEnableArgs)
@@ -52,8 +79,9 @@ public class ListTrigger : MonoBehaviour
             ghostMesh.GetComponent<MeshRenderer>().enabled = true;
         }
 
-
-
+        //TextinfoDesciption.text = textin;
+        InfoObject.GetComponent<Text>().text = textin;
+        InfoObject.SetActive(true);
     }
 
     public void MeshGhostDisable(SelectExitEventArgs MeshDisableArgs)
@@ -61,19 +89,8 @@ public class ListTrigger : MonoBehaviour
         if (MeshDisableArgs.interactor.tag == "hand")
         {
             ghostMesh.GetComponent<MeshRenderer>().enabled = false;
-
         }
-
-
-        //Script_xRGrabInteractable.enabled = false;
     }
 
-    //public void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject == socketCollider)
-    //    {
-    //        ghostMesh.GetComponent<MeshRenderer>().enabled = false;
-    //    }
-    //}
 }
 
