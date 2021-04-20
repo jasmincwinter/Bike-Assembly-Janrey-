@@ -20,6 +20,8 @@ public class ListTrigger : MonoBehaviour
     public GameObject InfoObject;
     public string textin;
 
+    public bool hasIncreased; 
+
     void Start()
     {
         testScript = FindObjectOfType<LevelList>();
@@ -31,11 +33,20 @@ public class ListTrigger : MonoBehaviour
 
         TextBoard.GetComponent<Text>();
         InfoObject.GetComponent<Text>();
+
+
     }
 
-    public void DisableSocket(Collider other)
+    public void IncreaseCount(Collider other)
     {
+        // If object transform = attach transform instead??  
+
         testScript.CurrentState++;
+        //if (hasIncreased == false)
+        //{
+        //    testScript.CurrentState++;
+        //    hasIncreased = true;
+        //}
     }
 
     IEnumerator coroutineD()
@@ -52,6 +63,18 @@ public class ListTrigger : MonoBehaviour
             StartCoroutine(coroutineD());
         }
 
+        else if (other.gameObject == boardCollider)
+        {
+            InfoObject.SetActive(false);
+            TextBoard.color = Color.black;
+        }
+
+    }
+
+    public void TextHover()
+    {
+        TextBoard.color = Color.blue;
+        gameObject.GetComponent<Renderer>().material.color = Color.blue; 
     }
 
     public void DisableWallSocket(Collider other)
@@ -59,7 +82,6 @@ public class ListTrigger : MonoBehaviour
         testScript.CurrentState--;
 
         other.gameObject.GetComponent<Collider>().enabled = false;
-
     }
 
     public void DisableXRGrab()
@@ -69,7 +91,12 @@ public class ListTrigger : MonoBehaviour
         // infor object UI text = false
         InfoObject.SetActive(false);
         // change color of the name of the asset to gray
-        TextBoard.color = Color.gray;
+        TextBoard.color = Color.red;
+    }
+
+    public void TextColour()
+    {
+        TextBoard.color = Color.red;
     }
 
     public void MeshGhost(SelectEnterEventArgs MeshEnableArgs)
@@ -80,7 +107,7 @@ public class ListTrigger : MonoBehaviour
         }
 
         //TextinfoDesciption.text = textin;
-        InfoObject.GetComponent<Text>().text = textin;
+        InfoObject.GetComponent<Text>().text = textin; 
         InfoObject.SetActive(true);
     }
 

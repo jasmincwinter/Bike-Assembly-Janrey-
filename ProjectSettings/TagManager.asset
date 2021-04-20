@@ -8,6 +8,9 @@ TagManager:
   - hand
   - crank
   - crankdrive
+  - part
+  - part2
+  - part3
   layers:
   - Default
   - TransparentFX
