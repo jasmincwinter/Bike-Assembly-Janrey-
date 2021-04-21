@@ -3,14 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - socket
-  - hand
-  - crank
-  - crankdrive
-  - part
-  - part2
-  - part3
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -18,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Body
-  - Grab
+  - 
+  - 
   - 
   - 
   - 
