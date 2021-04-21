@@ -7,93 +7,92 @@ using UnityEngine.UI;
 public class ListTrigger : MonoBehaviour
 {
     public GameObject socket;
+    public GameObject ghostMesh;
     private LevelList testScript;
 
     public XRGrabInteractable Script_xRGrabInteractable;
     public XRSocketInteractor Script_xRSocketInteractor;
 
-    public GameObject ghostMesh;
-
     public GameObject boardCollider;
-
     public Text TextBoard;
     public GameObject InfoObject;
     public string textin;
 
-    public bool hasIncreased; 
 
     void Start()
     {
         testScript = FindObjectOfType<LevelList>();
+        ghostMesh.GetComponent<MeshRenderer>().enabled = false;
         Script_xRGrabInteractable = GetComponent<XRGrabInteractable>();
 
-        ghostMesh.GetComponent<MeshRenderer>().enabled= false;
-
         InfoObject.SetActive(false);
-
         TextBoard.GetComponent<Text>();
         InfoObject.GetComponent<Text>();
-
-
     }
 
     public void IncreaseCount(Collider other)
-    {
-        // If object transform = attach transform instead??  
-
+    { 
         testScript.CurrentState++;
-        //if (hasIncreased == false)
-        //{
-        //    testScript.CurrentState++;
-        //    hasIncreased = true;
-        //}
     }
 
-    IEnumerator coroutineD()
+    IEnumerator coroutineDelay()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         Script_xRGrabInteractable.enabled = false;
-        socket.gameObject.GetComponent<Collider>().enabled = false;
+        socket.gameObject.GetComponent<Collider>().enabled = false; // Prevents from counting more than once.
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == socket)
         {
-            StartCoroutine(coroutineD());
+            StartCoroutine(coroutineDelay());
         }
 
         else if (other.gameObject == boardCollider)
         {
-            InfoObject.SetActive(false);
+            StartCoroutine(coroutineDelay()); 
             TextBoard.color = Color.black;
+            InfoObject.SetActive(false);
         }
-
     }
 
-    public void TextHover()
+    public void TextHover(HoverEnterEventArgs TextHoverArgs) // Talks only to hand, because socket is also similar interactor. 
     {
-        TextBoard.color = Color.blue;
-        gameObject.GetComponent<Renderer>().material.color = Color.blue; 
+        if (TextHoverArgs.interactor.tag == "hand")
+        {
+            TextBoard.color = Color.blue;
+            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        } 
+    }
+
+    public void TextHoverExit(HoverExitEventArgs TextHoverExitArgs)
+    {
+        if (TextHoverExitArgs.interactor.tag == "hand")
+        {
+            TextBoard.color = Color.black;
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+        }
+;
     }
 
     public void DisableWallSocket(Collider other)
     {
+        TextBoard.color = Color.black;
         testScript.CurrentState--;
-
-        other.gameObject.GetComponent<Collider>().enabled = false;
     }
+
 
     public void DisableXRGrab()
     {
          Script_xRGrabInteractable.enabled = false;
 
-        // infor object UI text = false
         InfoObject.SetActive(false);
-        // change color of the name of the asset to gray
+
         TextBoard.color = Color.red;
     }
 
+    // Just for last item. 
     public void TextColour()
     {
         TextBoard.color = Color.red;
@@ -106,7 +105,6 @@ public class ListTrigger : MonoBehaviour
             ghostMesh.GetComponent<MeshRenderer>().enabled = true;
         }
 
-        //TextinfoDesciption.text = textin;
         InfoObject.GetComponent<Text>().text = textin; 
         InfoObject.SetActive(true);
     }
@@ -118,6 +116,5 @@ public class ListTrigger : MonoBehaviour
             ghostMesh.GetComponent<MeshRenderer>().enabled = false;
         }
     }
-
 }
 

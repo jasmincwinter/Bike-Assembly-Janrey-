@@ -11,11 +11,15 @@ public class LevelList : MonoBehaviour
 
     private XRGrabInteractable Script_xRGrabInteractable;
 
+    public Text stateCount; 
+
     //public Text TextBoard;
 
     void Start()
     {
         //TextBoard.GetComponent<Text>();
+
+        stateCount.enabled = true; 
     }
 
     void Update()
@@ -23,15 +27,9 @@ public class LevelList : MonoBehaviour
         for (int i = 0; i < Grababbles.Count; i++)
         {
             Grababbles[CurrentState].GetComponent<XRGrabInteractable>().enabled = true;
-
-
-
-            if (CurrentState == 3)
-            {
-                //StartCoroutine(coroutineD());
-                //break;
-            }
         }
+
+        stateCount.text = "Count: " + CurrentState;
     }
 
 
