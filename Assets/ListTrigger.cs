@@ -10,43 +10,23 @@ public class ListTrigger : MonoBehaviour
     private LevelList testScript;
     public XRGrabInteractable Script_xRGrabInteractable;
     public XRSocketInteractor Script_xRSocketInteractor;
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     public GameObject boardCollider;
     public Text TextBoard;
     public GameObject InfoObject;
     public string textin;
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
     void Start()
     {
         testScript = FindObjectOfType<LevelList>();
         ghostMesh.GetComponent<MeshRenderer>().enabled = false;
         Script_xRGrabInteractable = GetComponent<XRGrabInteractable>();
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         InfoObject.SetActive(false);
         TextBoard.GetComponent<Text>();
         InfoObject.GetComponent<Text>();
     }
     public void IncreaseCount(Collider other)
-<<<<<<< Updated upstream
-    { 
-        testScript.CurrentState++;
-    }
-
-=======
     {
         testScript.CurrentState++;
     }
->>>>>>> Stashed changes
     IEnumerator coroutineDelay()
     {
         yield return new WaitForSeconds(3);
@@ -61,23 +41,6 @@ public class ListTrigger : MonoBehaviour
         }
         else if (other.gameObject == boardCollider)
         {
-<<<<<<< Updated upstream
-            StartCoroutine(coroutineDelay()); 
-            TextBoard.color = Color.black;
-            InfoObject.SetActive(false);
-        }
-    }
-
-    public void TextHover(HoverEnterEventArgs TextHoverArgs) // Talks only to hand, because socket is also similar interactor. 
-    {
-        if (TextHoverArgs.interactor.tag == "hand")
-        {
-            TextBoard.color = Color.blue;
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
-        } 
-    }
-
-=======
             StartCoroutine(coroutineDelay());
             TextBoard.color = Color.black;
             InfoObject.SetActive(false);
@@ -91,7 +54,6 @@ public class ListTrigger : MonoBehaviour
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
     }
->>>>>>> Stashed changes
     public void TextHoverExit(HoverExitEventArgs TextHoverExitArgs)
     {
         if (TextHoverExitArgs.interactor.tag == "hand")
@@ -106,20 +68,6 @@ public class ListTrigger : MonoBehaviour
         TextBoard.color = Color.black;
         testScript.CurrentState--;
     }
-<<<<<<< Updated upstream
-
-
-    public void DisableXRGrab()
-    {
-         Script_xRGrabInteractable.enabled = false;
-
-        InfoObject.SetActive(false);
-
-        TextBoard.color = Color.red;
-    }
-
-    // Just for last item. 
-=======
     public void DisableXRGrab()
     {
         Script_xRGrabInteractable.enabled = false;
@@ -127,7 +75,6 @@ public class ListTrigger : MonoBehaviour
         TextBoard.color = Color.red;
     }
     // Just for last item.
->>>>>>> Stashed changes
     public void TextColour()
     {
         TextBoard.color = Color.red;
@@ -138,12 +85,7 @@ public class ListTrigger : MonoBehaviour
         {
             ghostMesh.GetComponent<MeshRenderer>().enabled = true;
         }
-<<<<<<< Updated upstream
-
-        InfoObject.GetComponent<Text>().text = textin; 
-=======
         InfoObject.GetComponent<Text>().text = textin;
->>>>>>> Stashed changes
         InfoObject.SetActive(true);
     }
     public void MeshGhostDisable(SelectExitEventArgs MeshDisableArgs)
