@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+
 public class LevelList : MonoBehaviour
 {
     public List<GameObject> Grababbles;
@@ -23,5 +26,10 @@ public class LevelList : MonoBehaviour
             Grababbles[CurrentState].GetComponent<XRGrabInteractable>().enabled = true;
         }
         stateCount.text = "Count: " + CurrentState;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }

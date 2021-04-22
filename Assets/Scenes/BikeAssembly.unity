@@ -13200,7 +13200,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Song: Meet Me at the Elevator by Mr.Hong. \n "
+  m_Text: "Song: Meet Me at the Elevator by Mr. Hong. \n "
 --- !u!222 &1644771196
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17845,7 +17845,7 @@ MonoBehaviour:
   boardCollider: {fileID: 1140352792}
   TextBoard: {fileID: 1004758589}
   InfoObject: {fileID: 2137550395}
-  textin: connects the handlebars to the fork.
+  textin: Connects the handlebars to the fork.
   congratsText: {fileID: 0}
 --- !u!114 &2134248272
 MonoBehaviour:
