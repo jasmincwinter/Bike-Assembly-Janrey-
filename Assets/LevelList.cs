@@ -9,6 +9,7 @@ public class LevelList : MonoBehaviour
     public int CurrentState;
     private XRGrabInteractable Script_xRGrabInteractable;
     public Text stateCount;
+
     //public Text TextBoard;
     void Start()
     {

@@ -14,15 +14,19 @@ public class ListTrigger : MonoBehaviour
     public Text TextBoard;
     public GameObject InfoObject;
     public string textin;
+    public GameObject congratsText;
+
     void Start()
     {
         testScript = FindObjectOfType<LevelList>();
         ghostMesh.GetComponent<MeshRenderer>().enabled = false;
         Script_xRGrabInteractable = GetComponent<XRGrabInteractable>();
-        InfoObject.SetActive(false);
+        InfoObject.SetActive(true);
         TextBoard.GetComponent<Text>();
         InfoObject.GetComponent<Text>();
+        congratsText.SetActive(false);
     }
+
     public void IncreaseCount(Collider other)
     {
         testScript.CurrentState++;
@@ -95,4 +99,10 @@ public class ListTrigger : MonoBehaviour
             ghostMesh.GetComponent<MeshRenderer>().enabled = false;
         }
     }
+
+    public void Congratulations()
+    {
+            congratsText.SetActive(true);
+    }
+
 }
