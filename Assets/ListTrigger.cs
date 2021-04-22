@@ -72,6 +72,12 @@ public class ListTrigger : MonoBehaviour
         TextBoard.color = Color.black;
         testScript.CurrentState--;
     }
+
+    public void LastTextColour()
+    {
+        TextBoard.color = Color.black;
+    }
+
     public void DisableXRGrab()
     {
         Script_xRGrabInteractable.enabled = false;
