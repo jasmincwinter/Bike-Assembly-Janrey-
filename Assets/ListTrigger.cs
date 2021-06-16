@@ -7,6 +7,13 @@ public class ListTrigger : MonoBehaviour
 {
     public GameObject socket;
     public GameObject ghostMesh;
+
+    // Here we have a dependency on LevelList. However, it doesn't make a whole lot of sense
+    // that a part should be dependent on what is essential a tutorial. This would sort of be like
+    // an ice skate depending on a skating instructor; we can clearly go skating without an instructor.
+    // What we really want to do is *notify* the LevelList when something has happened (part picked up and placed).
+    // We can use events for this, which we will discuss on Wednesday the 16th.
+    // (the above also applies to the reference to the TextBoard and congratsText).
     private LevelList testScript;
     public XRGrabInteractable Script_xRGrabInteractable;
     public XRSocketInteractor Script_xRSocketInteractor;
@@ -31,6 +38,9 @@ public class ListTrigger : MonoBehaviour
     {
         testScript.CurrentState++;
     }
+
+    // Coroutines are nice, but something to be careful of is starting a routine, it being "interrupted", then
+    // not cancelling it. I suspect this is the root of the disabled collider issue.
     IEnumerator coroutineDelay()
     {
         yield return new WaitForSeconds(3);
