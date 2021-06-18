@@ -5,48 +5,57 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.UI;
 public class ListTrigger : MonoBehaviour
 {
+    // Building the bike. 
+    private LevelList LevelListScript;
     public GameObject socket;
     public GameObject ghostMesh;
-
-    // Here we have a dependency on LevelList. However, it doesn't make a whole lot of sense
-    // that a part should be dependent on what is essential a tutorial. This would sort of be like
-    // an ice skate depending on a skating instructor; we can clearly go skating without an instructor.
-    // What we really want to do is *notify* the LevelList when something has happened (part picked up and placed).
-    // We can use events for this, which we will discuss on Wednesday the 16th.
-    // (the above also applies to the reference to the TextBoard and congratsText).
-    private LevelList testScript;
     public XRGrabInteractable Script_xRGrabInteractable;
     public XRSocketInteractor Script_xRSocketInteractor;
+
+    // Board ineraction.
     public GameObject boardCollider;
+    public string textin;
+
+    // Tutorial. 
     public Text TextBoard;
     public GameObject InfoObject;
-    public string textin;
     public GameObject congratsText;
+
+
+    // Make child a ghost bike.
+    public GameObject bikeParent;
+    //public Transform bikeParentTransform;
+
+
+    public bool rotateCube; 
+
 
     void Start()
     {
-        testScript = FindObjectOfType<LevelList>();
+        LevelListScript = FindObjectOfType<LevelList>();
         ghostMesh.GetComponent<MeshRenderer>().enabled = false;
         Script_xRGrabInteractable = GetComponent<XRGrabInteractable>();
         InfoObject.SetActive(true);
         TextBoard.GetComponent<Text>();
         InfoObject.GetComponent<Text>();
         congratsText.SetActive(false);
+
+        //rotateCube = rotateCube.GetComponent<XRGrabInteractable>().enabled = true;
     }
 
     public void IncreaseCount(Collider other)
     {
-        testScript.CurrentState++;
+        LevelListScript.CurrentState++;
     }
-
-    // Coroutines are nice, but something to be careful of is starting a routine, it being "interrupted", then
-    // not cancelling it. I suspect this is the root of the disabled collider issue.
     IEnumerator coroutineDelay()
     {
         yield return new WaitForSeconds(3);
         Script_xRGrabInteractable.enabled = false;
         socket.gameObject.GetComponent<Collider>().enabled = false; // Prevents from counting more than once.
+
+        // Make red bike part a child of ghost bike so that they rotate together. 
     }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == socket)
@@ -60,6 +69,12 @@ public class ListTrigger : MonoBehaviour
             InfoObject.SetActive(false);
         }
     }
+
+    public void OnTriggerExit(Collider other)
+    {
+        StopCoroutine(coroutineDelay()); // Trying to prevent collider from being disabled. 
+    }
+
     public void TextHover(HoverEnterEventArgs TextHoverArgs) // Talks only to hand, because socket is also similar interactor.
     {
         if (TextHoverArgs.interactor.tag == "hand")
@@ -80,7 +95,8 @@ public class ListTrigger : MonoBehaviour
     public void DisableWallSocket(Collider other)
     {
         TextBoard.color = Color.black;
-        testScript.CurrentState--;
+        LevelListScript.CurrentState--;
+
     }
 
     public void LastTextColour()
@@ -93,6 +109,7 @@ public class ListTrigger : MonoBehaviour
         Script_xRGrabInteractable.enabled = false;
         InfoObject.SetActive(false);
         TextBoard.color = Color.red;
+        transform.parent = bikeParent.transform;
     }
     // Just for last item.
     public void TextColour()
@@ -107,6 +124,8 @@ public class ListTrigger : MonoBehaviour
         }
         InfoObject.GetComponent<Text>().text = textin;
         InfoObject.SetActive(true);
+
+
     }
     public void MeshGhostDisable(SelectExitEventArgs MeshDisableArgs)
     {
