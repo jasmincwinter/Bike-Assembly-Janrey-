@@ -3,32 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.UI;
+using System;
+
 public class ListTrigger : MonoBehaviour
 {
     // Building the bike. 
-    private LevelList LevelListScript;
     public GameObject socket;
     public GameObject ghostMesh;
     public XRGrabInteractable Script_xRGrabInteractable;
     public XRSocketInteractor Script_xRSocketInteractor;
-
-    // Board ineraction.
     public GameObject boardCollider;
-    public string textin;
+
+    // Events referenced in Tutorial script. 
+    public event Action<string> OnSelect;
+    public event Action OnDeselect; 
 
     // Tutorial. 
+    private LevelList LevelListScript;
+    public string textin;
     public Text TextBoard;
     public GameObject InfoObject;
-    public GameObject congratsText;
-
 
     // Make child a ghost bike.
     public GameObject bikeParent;
-    //public Transform bikeParentTransform;
-
-
-    public bool rotateCube; 
-
 
     void Start()
     {
@@ -38,23 +35,22 @@ public class ListTrigger : MonoBehaviour
         InfoObject.SetActive(true);
         TextBoard.GetComponent<Text>();
         InfoObject.GetComponent<Text>();
-        congratsText.SetActive(false);
-
-        //rotateCube = rotateCube.GetComponent<XRGrabInteractable>().enabled = true;
     }
 
     public void IncreaseCount(Collider other)
     {
         LevelListScript.CurrentState++;
     }
+
     IEnumerator coroutineDelay()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         Script_xRGrabInteractable.enabled = false;
         socket.gameObject.GetComponent<Collider>().enabled = false; // Prevents from counting more than once.
 
         // Make red bike part a child of ghost bike so that they rotate together. 
     }
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -74,6 +70,8 @@ public class ListTrigger : MonoBehaviour
     {
         StopCoroutine(coroutineDelay()); // Trying to prevent collider from being disabled. 
     }
+
+
 
     public void TextHover(HoverEnterEventArgs TextHoverArgs) // Talks only to hand, because socket is also similar interactor.
     {
@@ -96,7 +94,6 @@ public class ListTrigger : MonoBehaviour
     {
         TextBoard.color = Color.black;
         LevelListScript.CurrentState--;
-
     }
 
     public void LastTextColour()
@@ -108,36 +105,35 @@ public class ListTrigger : MonoBehaviour
     {
         Script_xRGrabInteractable.enabled = false;
         InfoObject.SetActive(false);
+
         TextBoard.color = Color.red;
         transform.parent = bikeParent.transform;
     }
     // Just for last item.
+
     public void TextColour()
     {
         TextBoard.color = Color.red;
     }
+
     public void MeshGhost(SelectEnterEventArgs MeshEnableArgs)
     {
         if (MeshEnableArgs.interactor.tag == "hand")
         {
             ghostMesh.GetComponent<MeshRenderer>().enabled = true;
         }
-        InfoObject.GetComponent<Text>().text = textin;
-        InfoObject.SetActive(true);
 
-
+        OnSelect?.Invoke(textin); 
     }
+
     public void MeshGhostDisable(SelectExitEventArgs MeshDisableArgs)
     {
+        OnDeselect?.Invoke();
+
+
         if (MeshDisableArgs.interactor.tag == "hand")
         {
             ghostMesh.GetComponent<MeshRenderer>().enabled = false;
         }
     }
-
-    public void Congratulations()
-    {
-            congratsText.SetActive(true);
-    }
-
 }
