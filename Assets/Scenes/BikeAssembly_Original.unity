@@ -3018,7 +3018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567dd2626b7e8bb4ba5dfa6d8af1e091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InfoObject: {fileID: 0}
+  InfoObject: {fileID: 2137550395}
 --- !u!4 &298122406
 Transform:
   m_ObjectHideFlags: 0
@@ -24599,7 +24599,6 @@ GameObject:
   - component: {fileID: 1641780571800033455}
   - component: {fileID: 8575965336028285730}
   - component: {fileID: 7517049045286194978}
-  - component: {fileID: 2449913756353506602}
   m_Layer: 7
   m_Name: Crank_Drive
   m_TagString: Untagged
@@ -24607,19 +24606,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2449913756353506602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2449913756353506601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567dd2626b7e8bb4ba5dfa6d8af1e091, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InfoObject: {fileID: 1787718210}
 --- !u!1 &2449913756853754310
 GameObject:
   m_ObjectHideFlags: 0
@@ -28223,7 +28209,6 @@ GameObject:
   - component: {fileID: 1582191135260764677}
   - component: {fileID: 2900701083127480636}
   - component: {fileID: 2931895757418458434}
-  - component: {fileID: 9021558760781358451}
   m_Layer: 7
   m_Name: Crank
   m_TagString: Untagged
@@ -28231,19 +28216,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &9021558760781358451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9021558760781358450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567dd2626b7e8bb4ba5dfa6d8af1e091, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InfoObject: {fileID: 550691235}
 --- !u!1 &9021558761289470365
 GameObject:
   m_ObjectHideFlags: 0

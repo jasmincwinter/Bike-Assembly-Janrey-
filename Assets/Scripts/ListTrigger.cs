@@ -115,11 +115,13 @@ public class ListTrigger : MonoBehaviour
         TextBoard.color = Color.red;
         transform.parent = bikeParent.transform;
     }
+
     // Just for last item.
 
     public void TextColour()
     {
         TextBoard.color = Color.red;
+        transform.parent = bikeParent.transform;
     }
 
     public void MeshGhost(SelectEnterEventArgs MeshEnableArgs)
