@@ -21,6 +21,12 @@ public class ListTrigger : MonoBehaviour
     // Tutorial. 
     private LevelList LevelListScript;
     public string textin;
+
+    // Events referenced in BoardDisplay script.
+
+
+
+    // Board display. 
     public Text TextBoard;
     public GameObject InfoObject;
 

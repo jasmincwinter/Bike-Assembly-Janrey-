@@ -21,4 +21,5 @@ public class Tutorial : MonoBehaviour
         InfoObject.SetActive(true);
         InfoObject.GetComponent<Text>().text = description;
     }
+
 }
